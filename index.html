@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mrunmai Kulkarni — Creative Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --cream: #f5f0e8;
+  --ink: #1a1612;
+  --warm: #c8a97a;
+  --blush: #e8d5c0;
+  --muted: #7a6e63;
+  --accent: #8b3a2a;
+  --light-line: #ddd5c8;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem 4rem;
+  background: rgba(245,240,232,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--light-line);
+  transition: padding 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.25s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 4rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-text {
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22vw;
+  font-weight: 300;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--light-line);
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.hero-content {
+  max-width: 680px;
+  animation: fadeUp 1s ease forwards;
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s ease forwards;
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s ease forwards;
+}
+
+.hero-cta {
+  display: inline-flex;
+  gap: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s ease forwards;
+}
+
+.btn-primary {
+  padding: 0.75rem 2rem;
+  background: var(--ink);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+.btn-ghost {
+  padding: 0.75rem 2rem;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+.btn-ghost:hover { background: var(--ink); color: var(--cream); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: bounce 2s infinite;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+}
+
+/* ── SECTION BASE ── */
+section {
+  padding: 7rem 4rem;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 3.5rem;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--warm);
+  margin-bottom: 3rem;
+}
+
+/* ── ABOUT ── */
+#about {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+#about .section-label { color: var(--warm); }
+#about .section-title { color: var(--cream); }
+#about .divider { background: var(--warm); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(245,240,232,0.75);
+  margin-bottom: 1.5rem;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.stat-box {
+  border: 1px solid rgba(200,169,122,0.3);
+  padding: 1.8rem 1.5rem;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.stat-box:hover {
+  border-color: var(--warm);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--warm);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.5);
+}
+
+/* ── EXPERIENCE TIMELINE ── */
+#experience { background: var(--cream); }
+
+.timeline {
+  position: relative;
+  max-width: 860px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--warm), transparent);
+}
+
+.timeline-item {
+  padding-left: 3.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--warm);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.timeline-dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--warm);
+}
+
+.timeline-item:hover .timeline-dot { background: var(--warm); }
+
+.timeline-card {
+  background: white;
+  padding: 1.8rem 2rem;
+  border: 1px solid var(--light-line);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(26,22,18,0.08);
+}
+
+.timeline-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.timeline-date {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.timeline-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  background: var(--blush);
+  color: var(--muted);
+}
+
+.timeline-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-company {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.timeline-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeline-bullets li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.timeline-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--warm);
+}
+
+/* ── EDUCATION ── */
+#education { background: var(--blush); }
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.edu-card {
+  background: white;
+  padding: 2.5rem;
+  border: 1px solid var(--light-line);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--accent);
+  transition: height 0.4s ease;
+}
+
+.edu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(26,22,18,0.1); }
+.edu-card:hover::before { height: 100%; }
+
+.edu-gpa {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--warm);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.edu-degree {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.3rem;
+}
+
+.edu-school {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+
+.edu-year {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+
+.edu-highlights {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edu-highlights li {
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.55;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.edu-highlights li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  font-size: 0.45rem;
+  top: 5px;
+  color: var(--warm);
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--ink); color: var(--cream); }
+#skills .section-label { color: var(--warm); }
+#skills .section-title { color: var(--cream); }
+#skills .divider { background: var(--warm); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid rgba(200,169,122,0.2);
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+  cursor: default;
+}
+
+.skill-item:hover {
+  border-color: var(--warm);
+  background: rgba(200,169,122,0.08);
+  transform: translateY(-3px);
+}
+
+.skill-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.skill-name {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: rgba(245,240,232,0.8);
+}
+
+/* ── RESEARCH ── */
+#research { background: var(--cream); }
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.research-card {
+  padding: 2rem;
+  border: 1px solid var(--light-line);
+  background: white;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.research-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+.research-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(26,22,18,0.1); }
+.research-card:hover::after { width: 100%; }
+
+.research-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--light-line);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.research-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+}
+
+.research-desc {
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+  padding: 8rem 4rem;
+}
+
+#contact .section-label { color: var(--warm); }
+#contact .section-title { color: var(--cream); }
+#contact .divider { margin: 0 auto 3rem; }
+
+.contact-subtitle {
+  color: rgba(245,240,232,0.6);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 auto 3rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  padding: 0.9rem 2rem;
+  border: 1px solid rgba(200,169,122,0.4);
+  transition: all 0.3s;
+}
+
+.contact-link:hover {
+  background: var(--warm);
+  border-color: var(--warm);
+  color: var(--ink);
+  transform: translateY(-3px);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(200,169,122,0.2);
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(245,240,232,0.35);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── REVEAL on scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  section { padding: 5rem 1.5rem; }
+  #hero { padding: 7rem 1.5rem 3rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .hero-bg-text { font-size: 30vw; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">M<span>.</span>Kulkarni</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Journey</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">MK</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Creative Strategist & Media Communicator</p>
+    <h1 class="hero-name">Mrunmai<br><em>Kulkarni</em></h1>
+    <p class="hero-tagline">Crafting audience-driven narratives, scaling digital performance, and building stories that move people — across screens, platforms, and frames.</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">View Journey</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who I Am</p>
+  <h2 class="section-title">Storyteller by Instinct,<br>Strategist by Craft</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a creative strategist with a background in media and communication, specialising in social media marketing, content strategy, and campaign execution across the media and film landscape.</p>
+      <p>My work lives at the intersection of data and intuition — I use analytics to inform stories, and stories to move audiences. Whether it's scaling a brand's digital footprint or shaping a character's visual identity on set, I bring the same intentional curiosity to everything I do.</p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-box">
+        <div class="stat-number">75%</div>
+        <div class="stat-label">Performance Growth</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">636%</div>
+        <div class="stat-label">Follower Surge</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">165%</div>
+        <div class="stat-label">Engagement Increase</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Industries Served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE TIMELINE -->
+<section id="experience">
+  <p class="section-label">The Journey</p>
+  <h2 class="section-title">Milestones &amp; Moments</h2>
+  <div class="divider"></div>
+
+  <div class="timeline">
+
+    <!-- Freelance Art Direction (Aug 2023 - Present) -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-meta">
+          <span class="timeline-date">Aug 2023 — Present</span>
+          <span class="timeline-tag">Freelance</span>
+        </div>
+        <div class="timeline-role">Art &amp; Costume Director</div>
+        <div class="timeline-company">Freelance — Film Projects</div>
+        <ul class="timeline-bullets">
+          <li>Led visual storytelling and costume design for film projects showcased at regional festivals.</li>
+          <li>Collaborated with creative teams to translate scripts into visual aesthetics and character design.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Media Exhibitors Dec 2023 - Jan 2024 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-meta">
+          <span class="timeline-date">Dec 2023 — Jan 2024</span>
+          <span class="timeline-tag">Internship</span>
+        </div>
+        <div class="timeline-role">Social Media Marketing Intern</div>
+        <div class="timeline-company">Media Exhibitors Pvt. Ltd.</div>
+        <ul class="timeline-bullets">
+          <li>Executed social media campaigns for clients across real estate, F&amp;B, and sports industries.</li>
+          <li>Researched audience insights and trends to inform targeted content strategies.</li>
+          <li>Managed content and ad execution using Meta Business Suite.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sakal May 2025 - Jul 2025 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-meta">
+          <span class="timeline-date">May 2025 — Jul 2025</span>
+          <span class="timeline-tag">Internship</span>
+        </div>
+        <div class="timeline-role">Social Media Intern</div>
+        <div class="timeline-company">Sakal Media Group</div>
+        <ul class="timeline-bullets">
+          <li>Managed daily social media publishing for a news platform, ensuring timely, trend-based delivery.</li>
+          <li>Improved audience retention through SEO-driven captions and news-led content strategy.</li>
+          <li>Tracked and analysed performance metrics via Meta Business Suite to refine posting strategy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- iFilms Intern Oct 2025 - Dec 2025 -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-meta">
+          <span class="timeline-date">Oct 2025 — Dec 2025</span>
+          <span class="timeline-tag">Internship</span>
+        </div>
+        <div class="timeline-role">Social Media &amp; Marketing Intern</div>
+        <div class="timeline-company">iFilms Media Productions Pvt. Ltd.</div>
+        <ul class="timeline-bullets">
+          <li>Developed content strategy that increased views by 115% and interactions by 165%.</li>
+          <li>Drove audience growth contributing to a 636% increase in followers within the campaign period.</li>
+          <li>Managed content calendars and posting workflows across brand and client accounts.</li>
+          <li>Supported paid promotions, improving reach and visibility.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- iFilms Creative Strategist Dec 2025 - Present -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-meta">
+          <span class="timeline-date">Dec 2025 — Present</span>
+          <span class="timeline-tag">Full-Time</span>
+        </div>
+        <div class="timeline-role">Creative Strategist</div>
+        <div class="timeline-company">iFilms Media Productions Pvt. Ltd.</div>
+        <ul class="timeline-bullets">
+          <li>Strategised and scaled social media content and campaigns, driving ~75% growth in overall performance metrics.</li>
+          <li>Led end-to-end content planning, managing monthly calendars across platforms to ensure brand alignment.</li>
+          <li>Coordinated cross-functional teams (design, content, production) to execute campaigns efficiently.</li>
+          <li>Analysed performance data to optimise content strategy and improve engagement outcomes.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academic Roots</p>
+  <h2 class="section-title">Education</h2>
+  <div class="divider"></div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-gpa">8.5</div>
+      <div class="edu-degree">M.Sc. Media &amp; Communication</div>
+      <div class="edu-school">DMCS, SPPU — Pune</div>
+      <div class="edu-year">2023 – 2025</div>
+      <ul class="edu-highlights">
+        <li>Specialised in media research with analytical and theoretical frameworks.</li>
+        <li>Planned simulated advertising and CSR campaigns.</li>
+        <li>Developed marketing strategies for brand challenges and target audiences.</li>
+        <li>Contributed as Art &amp; Costume Director in short film projects.</li>
+      </ul>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-gpa">9.08</div>
+      <div class="edu-degree">BA Political Science</div>
+      <div class="edu-school">H.P.T. Arts &amp; R.Y.K. Science College — Nashik</div>
+      <div class="edu-year">2020 – 2023</div>
+      <ul class="edu-highlights">
+        <li>Strong foundation in critical thinking, writing, and public discourse.</li>
+        <li>Co-wrote and co-directed a skit that won the 'Best Skit' prize.</li>
+        <li>Built early skills in communication, persuasion, and storytelling.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Toolkit</p>
+  <h2 class="section-title">Skills &amp; Tools</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <!-- Expertise -->
+    <div class="skill-item reveal"><span class="skill-icon">🧭</span><span class="skill-name">Social Media Strategy</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">✍️</span><span class="skill-name">Content Strategy</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">💡</span><span class="skill-name">Creative Strategy</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🏷️</span><span class="skill-name">Branding</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🔍</span><span class="skill-name">SEO Writing</span></div>
+    <!-- Tools -->
+    <div class="skill-item reveal"><span class="skill-icon">📊</span><span class="skill-name">Meta Business Suite</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">📈</span><span class="skill-name">Google Analytics</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">⚡</span><span class="skill-name">Power BI</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🎨</span><span class="skill-name">Canva</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🖊️</span><span class="skill-name">Inkscape</span></div>
+    <!-- Research -->
+    <div class="skill-item reveal"><span class="skill-icon">🔬</span><span class="skill-name">Performance Analysis</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🗺️</span><span class="skill-name">Campaign Planning</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">📰</span><span class="skill-name">Media Research</span></div>
+    <!-- Languages -->
+    <div class="skill-item reveal"><span class="skill-icon">🇬🇧</span><span class="skill-name">English</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🇮🇳</span><span class="skill-name">Marathi</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🇮🇳</span><span class="skill-name">Hindi</span></div>
+    <!-- Bonus -->
+    <div class="skill-item reveal"><span class="skill-icon">🎬</span><span class="skill-name">Art &amp; Costume Direction</span></div>
+    <div class="skill-item reveal"><span class="skill-icon">🧵</span><span class="skill-name">Visual Storytelling</span></div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <p class="section-label">Academic Work</p>
+  <h2 class="section-title">Research Projects</h2>
+  <div class="divider"></div>
+  <div class="research-grid">
+    <div class="research-card reveal">
+      <div class="research-num">01</div>
+      <div class="research-title">Branding 'Wellness' in India: A Multimodal Examination of Instagram Trends</div>
+      <div class="research-desc">Studied Indian wellness and beauty brands to explore evolving marketing patterns on social media. Conducted semiotic analysis to examine trends in brand marketing strategies.</div>
+    </div>
+    <div class="research-card reveal">
+      <div class="research-num">02</div>
+      <div class="research-title">All the Single Ladies: Portrayal of Single Women in Bollywood (2014–2024)</div>
+      <div class="research-desc">Analysed 8 films using feminist theory. Applied mixed-methods content analysis including screen time, symbolism, and narrative roles. Co-authored report on evolving gender norms and feminist shifts in Indian cinema.</div>
+    </div>
+    <div class="research-card reveal">
+      <div class="research-num">03</div>
+      <div class="research-title">Tit for Tat Diplomacy: A Framing Analysis of The TOI and The Wire</div>
+      <div class="research-desc">Researched India–Canada standoff coverage using Entman's framing model. Compared media framing with government stance to uncover ideological differences in journalism.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Let's Connect</p>
+  <h2 class="section-title">Say Hello</h2>
+  <div class="divider"></div>
+  <p class="contact-subtitle">Open to creative collaborations, strategy roles, and conversations about media, storytelling, and everything in between.</p>
+  <div class="contact-links">
+    <a href="mailto:mrunkul1601@gmail.com" class="contact-link">
+      <span>📧</span> mrunkul1601@gmail.com
+    </a>
+    <a href="tel:9405463706" class="contact-link">
+      <span>📱</span> +91 94054 63706
+    </a>
+    <a href="https://linkedin.com/in/mrunmai-kulkarni" target="_blank" class="contact-link">
+      <span>🔗</span> LinkedIn
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Mrunmai Kulkarni</span>
+  <span>Creative Strategist · Pune, India</span>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
+
+// Stagger timeline items
+document.querySelectorAll('.timeline-item').forEach((item, i) => {
+  item.style.transitionDelay = `${i * 0.08}s`;
+});
+
+// Stagger reveal items
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+});
+
+// Nav shrink on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 80) {
+    nav.style.padding = '1rem 4rem';
+  } else {
+    nav.style.padding = '1.4rem 4rem';
+  }
+});
+</script>
+</body>
+</html>
