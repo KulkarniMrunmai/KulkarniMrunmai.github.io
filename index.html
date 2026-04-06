@@ -1,806 +1,921 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mrunmai Kulkarni — Creative Strategist</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --cream: #f5f0e8;
-  --ink: #1a1612;
-  --warm: #c8a97a;
-  --blush: #e8d5c0;
-  --muted: #7a6e63;
-  --accent: #8b3a2a;
-  --light-line: #ddd5c8;
+  --teal:    #004643;
+  --teal-l:  #00635e;
+  --teal-xl: #e0efee;
+  --gold:    #edd75a;
+  --gold-d:  #c9b43a;
+  --sienna:  #5d2b09;
+  --sienna-l:#8a4618;
+  --cream:   #fdf8ed;
+  --offwhite:#f5f0e4;
+  --ink:     #1c1008;
+  --muted:   #5a4e3a;
+  --line:    #e0d8c8;
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 
 body {
   background: var(--cream);
   color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
   overflow-x: hidden;
 }
 
-/* Grain overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.5;
-}
-
-/* ── NAV ── */
+/* NAV */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.4rem 4rem;
-  background: rgba(245,240,232,0.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--light-line);
+  padding: 1.1rem 5vw;
+  background: rgba(253,248,237,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 2.5px solid var(--gold);
   transition: padding 0.3s;
 }
 
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--ink);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--teal);
   text-decoration: none;
 }
-
-.nav-logo span { color: var(--accent); }
+.nav-logo .dot { color: var(--gold); }
 
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   list-style: none;
+  align-items: center;
 }
-
 .nav-links a {
   text-decoration: none;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
   transition: color 0.25s;
   position: relative;
+  padding-bottom: 3px;
 }
-
 .nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -3px; left: 0;
-  width: 0; height: 1px;
-  background: var(--accent);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover { color: var(--ink); }
-.nav-links a:hover::after { width: 100%; }
-
-/* ── HERO ── */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 8rem 4rem 4rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg-text {
-  position: absolute;
-  right: -2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22vw;
-  font-weight: 300;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--light-line);
-  letter-spacing: -0.04em;
-  user-select: none;
-  pointer-events: none;
-  line-height: 1;
-}
-
-.hero-content {
-  max-width: 680px;
-  animation: fadeUp 1s ease forwards;
-}
-
-.hero-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.2rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.2s ease forwards;
-}
-
-.hero-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 7vw, 6rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.4s ease forwards;
-}
-
-.hero-name em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-.hero-tagline {
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.75;
-  max-width: 480px;
-  margin-bottom: 2.5rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.6s ease forwards;
-}
-
-.hero-cta {
-  display: inline-flex;
-  gap: 1.2rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.8s ease forwards;
-}
-
-.btn-primary {
-  padding: 0.75rem 2rem;
-  background: var(--ink);
-  color: var(--cream);
-  text-decoration: none;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: background 0.3s, transform 0.2s;
-}
-.btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
-
-.btn-ghost {
-  padding: 0.75rem 2rem;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: all 0.3s;
-}
-.btn-ghost:hover { background: var(--ink); color: var(--cream); }
-
-.hero-scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  animation: bounce 2s infinite;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--muted), transparent);
-}
-
-/* ── SECTION BASE ── */
-section {
-  padding: 7rem 4rem;
-}
-
-.section-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 300;
-  line-height: 1.15;
-  margin-bottom: 3.5rem;
-}
-
-.divider {
-  width: 60px;
-  height: 1px;
-  background: var(--warm);
-  margin-bottom: 3rem;
-}
-
-/* ── ABOUT ── */
-#about {
-  background: var(--ink);
-  color: var(--cream);
-}
-
-#about .section-label { color: var(--warm); }
-#about .section-title { color: var(--cream); }
-#about .divider { background: var(--warm); }
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-
-.about-text p {
-  font-size: 1.05rem;
-  line-height: 1.9;
-  color: rgba(245,240,232,0.75);
-  margin-bottom: 1.5rem;
-}
-
-.about-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.stat-box {
-  border: 1px solid rgba(200,169,122,0.3);
-  padding: 1.8rem 1.5rem;
-  transition: border-color 0.3s, transform 0.3s;
-}
-
-.stat-box:hover {
-  border-color: var(--warm);
-  transform: translateY(-4px);
-}
-
-.stat-number {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--warm);
-  line-height: 1;
-  margin-bottom: 0.4rem;
-}
-
-.stat-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(245,240,232,0.5);
-}
-
-/* ── EXPERIENCE TIMELINE ── */
-#experience { background: var(--cream); }
-
-.timeline {
-  position: relative;
-  max-width: 860px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 10px;
-  top: 0; bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--warm), transparent);
-}
-
-.timeline-item {
-  padding-left: 3.5rem;
-  margin-bottom: 3.5rem;
-  position: relative;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.timeline-item.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.timeline-dot {
-  position: absolute;
-  left: 0;
-  top: 4px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--warm);
-  background: var(--cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s;
-}
-
-.timeline-dot::after {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--warm);
-}
-
-.timeline-item:hover .timeline-dot { background: var(--warm); }
-
-.timeline-card {
-  background: white;
-  padding: 1.8rem 2rem;
-  border: 1px solid var(--light-line);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(26,22,18,0.08);
-}
-
-.timeline-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.6rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.timeline-date {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 400;
-}
-
-.timeline-tag {
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.7rem;
-  background: var(--blush);
-  color: var(--muted);
-}
-
-.timeline-role {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  font-weight: 400;
-  margin-bottom: 0.2rem;
-}
-
-.timeline-company {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-}
-
-.timeline-bullets {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.timeline-bullets li {
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.6;
-  padding-left: 1rem;
-  position: relative;
-}
-
-.timeline-bullets li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--warm);
-}
-
-/* ── EDUCATION ── */
-#education { background: var(--blush); }
-
-.edu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.edu-card {
-  background: white;
-  padding: 2.5rem;
-  border: 1px solid var(--light-line);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.edu-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 3px;
-  height: 0;
-  background: var(--accent);
-  transition: height 0.4s ease;
-}
-
-.edu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(26,22,18,0.1); }
-.edu-card:hover::before { height: 100%; }
-
-.edu-gpa {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
-  font-weight: 300;
-  color: var(--warm);
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-
-.edu-degree {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  font-weight: 400;
-  margin-bottom: 0.3rem;
-}
-
-.edu-school {
-  font-size: 0.78rem;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.3rem;
-}
-
-.edu-year {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.2rem;
-}
-
-.edu-highlights {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.edu-highlights li {
-  font-size: 0.83rem;
-  color: var(--muted);
-  line-height: 1.55;
-  padding-left: 1rem;
-  position: relative;
-}
-
-.edu-highlights li::before {
-  content: '◆';
-  position: absolute;
-  left: 0;
-  font-size: 0.45rem;
-  top: 5px;
-  color: var(--warm);
-}
-
-/* ── SKILLS ── */
-#skills { background: var(--ink); color: var(--cream); }
-#skills .section-label { color: var(--warm); }
-#skills .section-title { color: var(--cream); }
-#skills .divider { background: var(--warm); }
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.2rem 1.4rem;
-  border: 1px solid rgba(200,169,122,0.2);
-  transition: border-color 0.3s, background 0.3s, transform 0.3s;
-  cursor: default;
-}
-
-.skill-item:hover {
-  border-color: var(--warm);
-  background: rgba(200,169,122,0.08);
-  transform: translateY(-3px);
-}
-
-.skill-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-
-.skill-name {
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  color: rgba(245,240,232,0.8);
-}
-
-/* ── RESEARCH ── */
-#research { background: var(--cream); }
-
-.research-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.research-card {
-  padding: 2rem;
-  border: 1px solid var(--light-line);
-  background: white;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.research-card::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0;
   width: 0; height: 2px;
-  background: var(--accent);
-  transition: width 0.4s ease;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover::after { width: 100%; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  background: none;
+  border: none;
+}
+.hamburger span { width: 22px; height: 2px; background: var(--teal); border-radius: 2px; display: block; transition: 0.3s; }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  background: var(--teal);
+  display: flex;
+  align-items: center;
+  padding: 8rem 5vw 5rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.research-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(26,22,18,0.1); }
-.research-card:hover::after { width: 100%; }
+.hero-circles { position: absolute; inset: 0; pointer-events: none; }
+.hc {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(237,215,90,0.18);
+}
+.hc1 { width: 520px; height: 520px; right: -120px; top: -120px; }
+.hc2 { width: 300px; height: 300px; right: 80px; bottom: -60px; }
+.hc3 { width: 180px; height: 180px; left: 8vw; bottom: 60px; border-color: rgba(237,215,90,0.09); }
 
-.research-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
-  font-weight: 300;
-  color: var(--light-line);
+.hero-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--teal);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s ease forwards;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.38s ease forwards;
+}
+.hero-name em { font-style: italic; font-weight: 400; color: var(--gold); }
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(253,248,237,0.55);
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.52s ease forwards;
+}
+
+.hero-bio {
+  font-size: 0.98rem;
+  color: rgba(253,248,237,0.7);
+  line-height: 1.85;
+  max-width: 520px;
+  margin-bottom: 2.4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.66s ease forwards;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s ease forwards;
+}
+
+.btn-gold {
+  padding: 0.85rem 2.2rem;
+  background: var(--gold);
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.3s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 20px rgba(237,215,90,0.22);
+}
+.btn-gold:hover { background: #f5e478; transform: translateY(-3px); box-shadow: 0 8px 28px rgba(237,215,90,0.38); }
+
+.btn-outline {
+  padding: 0.85rem 2.2rem;
+  border: 2px solid rgba(253,248,237,0.38);
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 5vw;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(253,248,237,0.38);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: pulse 2.5s infinite;
+}
+.hero-scroll-hint .hline { width: 36px; height: 1px; background: rgba(237,215,90,0.45); }
+
+/* SECTION BASE */
+section { padding: 6rem 5vw; position: relative; }
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sienna);
+  margin-bottom: 0.7rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 22px; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+
+.section-sub {
+  font-size: 0.92rem;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+
+/* ABOUT */
+#about { background: var(--offwhite); }
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.92;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+}
+.about-text p strong { color: var(--teal); font-weight: 700; }
+.about-text p em { color: var(--sienna); font-style: italic; }
+
+.about-right { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.stat-card {
+  background: var(--teal);
+  padding: 1.5rem 1.8rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  cursor: default;
+}
+.stat-card:hover { transform: translateX(7px); box-shadow: -5px 0 0 var(--gold); }
+
+.stat-icon { font-size: 1.7rem; flex-shrink: 0; }
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold);
   line-height: 1;
+}
+.stat-desc {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(253,248,237,0.6);
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* EXPERIENCE */
+#experience { background: var(--cream); }
+
+.timeline { position: relative; max-width: 860px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal) 0%, var(--gold) 50%, rgba(93,43,9,0.3) 100%);
+  border-radius: 2px;
+}
+
+.tl-item {
+  padding-left: 3.8rem;
+  margin-bottom: 2.8rem;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.tl-item.visible { opacity: 1; transform: translateX(0); }
+
+.tl-dot {
+  position: absolute;
+  left: 5px; top: 18px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 3px solid var(--teal);
+  transition: background 0.3s, border-color 0.3s;
+  z-index: 1;
+}
+.tl-item:hover .tl-dot { background: var(--gold); border-color: var(--gold); }
+.tl-item.current .tl-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(237,215,90,0.25);
+}
+
+.tl-card {
+  background: white;
+  border: 1.5px solid var(--line);
+  border-radius: 7px;
+  padding: 1.8rem 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.tl-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 3px;
+  background: linear-gradient(to right, var(--teal), var(--gold));
+  transition: width 0.4s ease;
+}
+.tl-item:hover .tl-card { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,70,67,0.1); }
+.tl-item:hover .tl-card::before { width: 100%; }
+
+.tl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.research-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
-  font-weight: 400;
-  line-height: 1.4;
-  margin-bottom: 0.8rem;
+.tl-date {
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sienna);
 }
 
-.research-desc {
-  font-size: 0.83rem;
+.tl-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.8rem;
+  border-radius: 20px;
+}
+.badge-current  { background: var(--gold); color: var(--teal); }
+.badge-intern   { background: var(--teal-xl); color: var(--teal); }
+.badge-freelance { background: #f0e8df; color: var(--sienna); }
+
+.tl-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.tl-company {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 0.95rem;
+}
+
+.tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.tl-bullets li {
+  font-size: 0.86rem;
   color: var(--muted);
   line-height: 1.65;
+  padding-left: 1.1rem;
+  position: relative;
+}
+.tl-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--gold-d);
+  font-size: 0.65rem;
+  top: 4px;
 }
 
-/* ── CONTACT ── */
-#contact {
-  background: var(--ink);
+/* EDUCATION */
+#education { background: var(--teal); }
+#education .section-eyebrow { color: var(--gold); }
+#education .section-eyebrow::before { background: var(--gold); }
+#education .section-heading { color: var(--cream); }
+#education .section-sub { color: rgba(253,248,237,0.58); }
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+}
+
+.edu-card {
+  background: rgba(253,248,237,0.05);
+  border: 1.5px solid rgba(237,215,90,0.25);
+  border-radius: 8px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s, background 0.35s;
+  cursor: default;
+}
+.edu-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle at center, rgba(237,215,90,0.12), transparent 70%);
+  transition: width 0.4s, height 0.4s;
+}
+.edu-card:hover { transform: translateY(-6px); background: rgba(253,248,237,0.08); box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+.edu-card:hover::after { width: 180px; height: 180px; }
+
+.edu-gpa {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.edu-gpa span { font-size: 1rem; font-weight: 400; opacity: 0.55; }
+
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--cream);
-  text-align: center;
-  padding: 8rem 4rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.edu-school { font-size: 0.76rem; color: rgba(253,248,237,0.52); font-weight: 600; margin-bottom: 0.25rem; }
+.edu-year {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.edu-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.edu-list li {
+  font-size: 0.82rem;
+  color: rgba(253,248,237,0.58);
+  line-height: 1.55;
+  padding-left: 1.1rem;
+  position: relative;
+}
+.edu-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  font-size: 0.36rem;
+  top: 5px;
+  color: var(--gold);
 }
 
-#contact .section-label { color: var(--warm); }
-#contact .section-title { color: var(--cream); }
-#contact .divider { margin: 0 auto 3rem; }
+/* SKILLS */
+#skills { background: var(--sienna); }
+#skills .section-eyebrow { color: var(--gold); }
+#skills .section-eyebrow::before { background: var(--gold); }
+#skills .section-heading { color: var(--cream); }
+#skills .section-sub { color: rgba(253,248,237,0.52); }
 
-.contact-subtitle {
-  color: rgba(245,240,232,0.6);
-  font-size: 1rem;
-  line-height: 1.8;
-  max-width: 480px;
-  margin: 0 auto 3rem;
+.skills-categories { display: flex; flex-direction: column; gap: 2.5rem; }
+
+.skill-cat-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(237,215,90,0.2);
+}
+
+.skills-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.skill-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.58rem 1.2rem;
+  background: rgba(253,248,237,0.07);
+  border: 1.5px solid rgba(253,248,237,0.14);
+  border-radius: 40px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(253,248,237,0.8);
+  transition: all 0.25s ease;
+  cursor: default;
+}
+.skill-pill:hover {
+  background: var(--gold);
+  color: var(--sienna);
+  border-color: var(--gold);
+  transform: translateY(-3px) scale(1.04);
+}
+.skill-pill .si { font-size: 1rem; }
+
+/* RESEARCH */
+#research { background: var(--offwhite); }
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.research-card {
+  background: white;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s;
+  cursor: default;
+}
+.research-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  background: linear-gradient(135deg, var(--teal-xl), rgba(237,215,90,0.09));
+  transition: height 0.4s ease;
+  z-index: 0;
+}
+.research-card > * { position: relative; z-index: 1; }
+.research-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,70,67,0.1); }
+.research-card:hover::before { height: 100%; }
+
+.research-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--line);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+.research-card:hover .research-num { color: var(--teal); }
+
+.research-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+  color: var(--ink);
+}
+.research-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+/* MEDIA PRODUCTION */
+#production { background: var(--cream); }
+
+.production-placeholder {
+  background: white;
+  border: 2px dashed var(--gold);
+  border-radius: 8px;
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 680px;
+}
+.production-placeholder .ph-icon { font-size: 3rem; margin-bottom: 1rem; }
+.production-placeholder h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 0.6rem;
+}
+.production-placeholder p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+/* CONTACT */
+#contact {
+  background: var(--teal);
+  text-align: center;
+  padding: 7rem 5vw;
+}
+#contact .section-eyebrow { color: var(--gold); justify-content: center; }
+#contact .section-eyebrow::before { background: var(--gold); }
+#contact .section-heading { color: var(--cream); }
+#contact .section-sub { color: rgba(253,248,237,0.58); margin: 0 auto 1rem; text-align: center; }
+
+.contact-spice {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--gold);
+  margin-bottom: 3rem;
 }
 
 .contact-links {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
 }
-
 .contact-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border: 2px solid rgba(237,215,90,0.38);
+  border-radius: 4px;
   color: var(--cream);
   text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  padding: 0.9rem 2rem;
-  border: 1px solid rgba(200,169,122,0.4);
+  font-size: 0.84rem;
+  font-weight: 600;
   transition: all 0.3s;
 }
-
 .contact-link:hover {
-  background: var(--warm);
-  border-color: var(--warm);
-  color: var(--ink);
-  transform: translateY(-3px);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--teal);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(237,215,90,0.28);
 }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer {
   background: var(--ink);
-  border-top: 1px solid rgba(200,169,122,0.2);
-  padding: 1.5rem 4rem;
+  padding: 1.4rem 5vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: rgba(245,240,232,0.35);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  color: rgba(253,248,237,0.28);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(6px); }
+@keyframes pulse {
+  0%, 100% { opacity: 0.38; }
+  50%       { opacity: 0.85; }
 }
 
-/* ── REVEAL on scroll ── */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .edu-grid    { grid-template-columns: 1fr; }
 }
 
-/* ── MOBILE ── */
-@media (max-width: 768px) {
-  nav { padding: 1.2rem 1.5rem; }
-  .nav-links { gap: 1.2rem; }
-  section { padding: 5rem 1.5rem; }
-  #hero { padding: 7rem 1.5rem 3rem; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .edu-grid { grid-template-columns: 1fr; }
-  .hero-bg-text { font-size: 30vw; }
-  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+@media (max-width: 680px) {
+  nav { padding: 1rem 5vw; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: rgba(253,248,237,0.97);
+    backdrop-filter: blur(14px);
+    border-bottom: 2.5px solid var(--gold);
+    flex-direction: column;
+    gap: 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { border-bottom: 1px solid var(--line); }
+  .nav-links a {
+    display: block;
+    padding: 1rem 5vw;
+    font-size: 0.88rem;
+  }
+  .hamburger { display: flex; }
+
+  #hero { padding: 7rem 5vw 4rem; }
+  .hero-name { font-size: clamp(2.6rem, 11vw, 3.8rem); }
+  .hero-scroll-hint { display: none; }
+
+  section { padding: 4.5rem 5vw; }
+
+  .timeline::before { left: 10px; }
+  .tl-item { padding-left: 2.8rem; }
+  .tl-dot  { left: 1px; }
+
+  .research-grid { grid-template-columns: 1fr; }
+  footer { justify-content: center; text-align: center; }
+}
+
+@media (max-width: 400px) {
+  .btn-gold, .btn-outline { padding: 0.75rem 1.4rem; font-size: 0.73rem; }
+  .hero-cta { flex-direction: column; }
+  .contact-links { flex-direction: column; align-items: center; }
 }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">M<span>.</span>Kulkarni</a>
-  <ul class="nav-links">
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">Mrunmai<span class="dot">.</span></a>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Journey</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#research">Research</a></li>
+    <li><a href="#production">Production</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg-text">MK</div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Creative Strategist & Media Communicator</p>
-    <h1 class="hero-name">Mrunmai<br><em>Kulkarni</em></h1>
-    <p class="hero-tagline">Crafting audience-driven narratives, scaling digital performance, and building stories that move people — across screens, platforms, and frames.</p>
+  <div class="hero-circles">
+    <div class="hc hc1"></div>
+    <div class="hc hc2"></div>
+    <div class="hc hc3"></div>
+  </div>
+  <div style="position:relative;z-index:1;max-width:680px;">
+    <div class="hero-tag">✦ Creative Strategist &amp; Media Communicator</div>
+    <h1 class="hero-name">Mrunmai<br><em>Kulkarni.</em></h1>
+    <p class="hero-subtitle">I make audiences stop, scroll, and stay.</p>
+    <p class="hero-bio">Storyteller by instinct, strategist by craft. I build audience-driven narratives that actually convert — across social media, film, and everything in between. Currently making iFilms feel unmissable, one campaign at a time.</p>
     <div class="hero-cta">
-      <a href="#experience" class="btn-primary">View Journey</a>
-      <a href="#contact" class="btn-ghost">Get in Touch</a>
+      <a href="#experience" class="btn-gold">See My Journey</a>
+      <a href="#contact" class="btn-outline">Let's Talk</a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+  <div class="hero-scroll-hint">
+    <div class="hline"></div>
+    Scroll down
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <p class="section-label">Who I Am</p>
-  <h2 class="section-title">Storyteller by Instinct,<br>Strategist by Craft</h2>
-  <div class="divider"></div>
-  <div class="about-grid">
+  <div class="section-eyebrow">Who I Am</div>
+  <h2 class="section-heading">Warm. Curious.<br>Dangerously Strategic.</h2>
+  <p class="section-sub">Media isn't just my degree — it's how I understand the world.</p>
+  <div class="about-inner">
     <div class="about-text reveal">
-      <p>I'm a creative strategist with a background in media and communication, specialising in social media marketing, content strategy, and campaign execution across the media and film landscape.</p>
-      <p>My work lives at the intersection of data and intuition — I use analytics to inform stories, and stories to move audiences. Whether it's scaling a brand's digital footprint or shaping a character's visual identity on set, I bring the same intentional curiosity to everything I do.</p>
+      <p>I'm a creative strategist living at the intersection of <strong>data and storytelling</strong>. I use analytics to sharpen narratives and stories to move numbers — because <em>great content shouldn't have to choose between being felt and being measured.</em></p>
+      <p>With a background spanning social media marketing, media research, and visual direction for film, I bring a rare blend of <strong>right-brain creativity and left-brain accountability</strong> to every project I touch.</p>
+      <p>When I'm not crafting campaign calendars, you'll likely find me obsessing over costume design on a film set, running a feminist lens over a Bollywood script, or just vibing to content that slaps differently in 2025. ✨</p>
     </div>
-    <div class="about-stats reveal">
-      <div class="stat-box">
-        <div class="stat-number">75%</div>
-        <div class="stat-label">Performance Growth</div>
+    <div class="about-right reveal">
+      <div class="stat-card">
+        <span class="stat-icon">📈</span>
+        <div>
+          <div class="stat-num">636%</div>
+          <div class="stat-desc">Follower surge · iFilms Internship</div>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-number">636%</div>
-        <div class="stat-label">Follower Surge</div>
+      <div class="stat-card">
+        <span class="stat-icon">🔥</span>
+        <div>
+          <div class="stat-num">165%</div>
+          <div class="stat-desc">Engagement boost · iFilms Internship</div>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-number">165%</div>
-        <div class="stat-label">Engagement Increase</div>
+      <div class="stat-card">
+        <span class="stat-icon">🚀</span>
+        <div>
+          <div class="stat-num">~75%</div>
+          <div class="stat-desc">Overall performance growth · Current Role</div>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-number">4+</div>
-        <div class="stat-label">Industries Served</div>
+      <div class="stat-card">
+        <span class="stat-icon">🎬</span>
+        <div>
+          <div class="stat-num">4+</div>
+          <div class="stat-desc">Industries &amp; media verticals served</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE TIMELINE -->
+<!-- EXPERIENCE -->
 <section id="experience">
-  <p class="section-label">The Journey</p>
-  <h2 class="section-title">Milestones &amp; Moments</h2>
-  <div class="divider"></div>
+  <div class="section-eyebrow">Career Journey</div>
+  <h2 class="section-heading">The Glow-Up,<br>Documented.</h2>
+  <p class="section-sub">From intern-with-big-ideas to strategist-with-proven-results — here's the journey in full.</p>
 
   <div class="timeline">
 
-    <!-- Freelance Art Direction (Aug 2023 - Present) -->
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-meta">
-          <span class="timeline-date">Aug 2023 — Present</span>
-          <span class="timeline-tag">Freelance</span>
+    <!-- Current: Creative Strategist -->
+    <div class="tl-item current">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Dec 2025 — Present</span>
+          <span class="tl-badge badge-current">✦ Current Role</span>
         </div>
-        <div class="timeline-role">Art &amp; Costume Director</div>
-        <div class="timeline-company">Freelance — Film Projects</div>
-        <ul class="timeline-bullets">
-          <li>Led visual storytelling and costume design for film projects showcased at regional festivals.</li>
-          <li>Collaborated with creative teams to translate scripts into visual aesthetics and character design.</li>
+        <div class="tl-role">Creative Strategist</div>
+        <div class="tl-company">iFilms Media Productions Pvt. Ltd. · Pune</div>
+        <ul class="tl-bullets">
+          <li>Strategised and scaled social media content and campaigns, driving <strong>~75% growth</strong> in overall performance metrics.</li>
+          <li>Led end-to-end content planning — managing monthly calendars across platforms to ensure brand consistency and alignment.</li>
+          <li>Coordinated cross-functional teams (design, content, production) to execute campaigns efficiently and on-brand.</li>
+          <li>Analysed performance data to optimise content strategy and continuously improve engagement outcomes.</li>
         </ul>
       </div>
     </div>
 
-    <!-- Media Exhibitors Dec 2023 - Jan 2024 -->
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-meta">
-          <span class="timeline-date">Dec 2023 — Jan 2024</span>
-          <span class="timeline-tag">Internship</span>
+    <!-- iFilms Intern -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Oct 2025 — Dec 2025</span>
+          <span class="tl-badge badge-intern">Internship</span>
         </div>
-        <div class="timeline-role">Social Media Marketing Intern</div>
-        <div class="timeline-company">Media Exhibitors Pvt. Ltd.</div>
-        <ul class="timeline-bullets">
+        <div class="tl-role">Social Media &amp; Marketing Intern</div>
+        <div class="tl-company">iFilms Media Productions Pvt. Ltd. · Pune</div>
+        <ul class="tl-bullets">
+          <li>Developed and executed content strategy that increased views by <strong>115%</strong> and content interactions by <strong>165%</strong>.</li>
+          <li>Drove audience growth, contributing to a <strong>636% increase in followers</strong> within the campaign period.</li>
+          <li>Managed content calendars and posting workflows across brand and client accounts.</li>
+          <li>Supported paid promotions and campaign execution, improving reach and overall visibility.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sakal -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">May 2025 — Jul 2025</span>
+          <span class="tl-badge badge-intern">Internship</span>
+        </div>
+        <div class="tl-role">Social Media Intern</div>
+        <div class="tl-company">Sakal Media Group · Pune</div>
+        <ul class="tl-bullets">
+          <li>Managed daily social media publishing for a news platform, ensuring timely and trend-responsive content delivery.</li>
+          <li>Improved audience retention and engagement consistency through SEO-driven captions and news-led content strategy.</li>
+          <li>Maintained consistent weekly performance, stabilising content output at <strong>~800–900 views</strong> and <strong>300–380 reach per week</strong> after initial peak cycles.</li>
+          <li>Tracked and analysed performance metrics using Meta Business Suite to refine posting strategy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Media Exhibitors -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Dec 2023 — Jan 2024</span>
+          <span class="tl-badge badge-intern">Internship</span>
+        </div>
+        <div class="tl-role">Social Media Marketing Intern</div>
+        <div class="tl-company">Media Exhibitors Pvt. Ltd.</div>
+        <ul class="tl-bullets">
           <li>Executed social media campaigns for clients across real estate, F&amp;B, and sports industries.</li>
           <li>Researched audience insights and trends to inform targeted content strategies.</li>
           <li>Managed content and ad execution using Meta Business Suite.</li>
@@ -808,58 +923,20 @@ footer {
       </div>
     </div>
 
-    <!-- Sakal May 2025 - Jul 2025 -->
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-meta">
-          <span class="timeline-date">May 2025 — Jul 2025</span>
-          <span class="timeline-tag">Internship</span>
+    <!-- Art Direction -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Aug 2023 — Present</span>
+          <span class="tl-badge badge-freelance">Freelance</span>
         </div>
-        <div class="timeline-role">Social Media Intern</div>
-        <div class="timeline-company">Sakal Media Group</div>
-        <ul class="timeline-bullets">
-          <li>Managed daily social media publishing for a news platform, ensuring timely, trend-based delivery.</li>
-          <li>Improved audience retention through SEO-driven captions and news-led content strategy.</li>
-          <li>Tracked and analysed performance metrics via Meta Business Suite to refine posting strategy.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- iFilms Intern Oct 2025 - Dec 2025 -->
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-meta">
-          <span class="timeline-date">Oct 2025 — Dec 2025</span>
-          <span class="timeline-tag">Internship</span>
-        </div>
-        <div class="timeline-role">Social Media &amp; Marketing Intern</div>
-        <div class="timeline-company">iFilms Media Productions Pvt. Ltd.</div>
-        <ul class="timeline-bullets">
-          <li>Developed content strategy that increased views by 115% and interactions by 165%.</li>
-          <li>Drove audience growth contributing to a 636% increase in followers within the campaign period.</li>
-          <li>Managed content calendars and posting workflows across brand and client accounts.</li>
-          <li>Supported paid promotions, improving reach and visibility.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- iFilms Creative Strategist Dec 2025 - Present -->
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-meta">
-          <span class="timeline-date">Dec 2025 — Present</span>
-          <span class="timeline-tag">Full-Time</span>
-        </div>
-        <div class="timeline-role">Creative Strategist</div>
-        <div class="timeline-company">iFilms Media Productions Pvt. Ltd.</div>
-        <ul class="timeline-bullets">
-          <li>Strategised and scaled social media content and campaigns, driving ~75% growth in overall performance metrics.</li>
-          <li>Led end-to-end content planning, managing monthly calendars across platforms to ensure brand alignment.</li>
-          <li>Coordinated cross-functional teams (design, content, production) to execute campaigns efficiently.</li>
-          <li>Analysed performance data to optimise content strategy and improve engagement outcomes.</li>
+        <div class="tl-role">Art &amp; Costume Director</div>
+        <div class="tl-company">Independent Film Projects</div>
+        <ul class="tl-bullets">
+          <li>Led visual storytelling and costume design for film projects showcased at regional festivals.</li>
+          <li>Collaborated with creative teams to translate scripts into visual aesthetics and character design.</li>
+          <li>Because telling great stories on-screen is just social media with better lighting. 🎥</li>
         </ul>
       </div>
     </div>
@@ -869,31 +946,31 @@ footer {
 
 <!-- EDUCATION -->
 <section id="education">
-  <p class="section-label">Academic Roots</p>
-  <h2 class="section-title">Education</h2>
-  <div class="divider"></div>
+  <div class="section-eyebrow">Academic Roots</div>
+  <h2 class="section-heading">Where It All<br>Began.</h2>
+  <p class="section-sub">Two degrees, one consistent trait — always near the top of the class.</p>
   <div class="edu-grid">
     <div class="edu-card reveal">
-      <div class="edu-gpa">8.5</div>
+      <div class="edu-gpa">8.5 <span>/ 10</span></div>
       <div class="edu-degree">M.Sc. Media &amp; Communication</div>
-      <div class="edu-school">DMCS, SPPU — Pune</div>
+      <div class="edu-school">DMCS, Savitribai Phule Pune University</div>
       <div class="edu-year">2023 – 2025</div>
-      <ul class="edu-highlights">
+      <ul class="edu-list">
         <li>Specialised in media research with analytical and theoretical frameworks.</li>
-        <li>Planned simulated advertising and CSR campaigns.</li>
-        <li>Developed marketing strategies for brand challenges and target audiences.</li>
+        <li>Planned simulated advertising and CSR campaigns for real brand challenges.</li>
+        <li>Developed brand marketing strategies for diverse target audiences.</li>
         <li>Contributed as Art &amp; Costume Director in short film projects.</li>
       </ul>
     </div>
     <div class="edu-card reveal">
-      <div class="edu-gpa">9.08</div>
+      <div class="edu-gpa">9.08 <span>/ 10</span></div>
       <div class="edu-degree">BA Political Science</div>
-      <div class="edu-school">H.P.T. Arts &amp; R.Y.K. Science College — Nashik</div>
+      <div class="edu-school">H.P.T. Arts &amp; R.Y.K. Science College, Nashik</div>
       <div class="edu-year">2020 – 2023</div>
-      <ul class="edu-highlights">
-        <li>Strong foundation in critical thinking, writing, and public discourse.</li>
-        <li>Co-wrote and co-directed a skit that won the 'Best Skit' prize.</li>
-        <li>Built early skills in communication, persuasion, and storytelling.</li>
+      <ul class="edu-list">
+        <li>Strong foundation in critical thinking, persuasion, and public discourse.</li>
+        <li>Co-wrote and co-directed a skit that won the 'Best Skit' prize — first W of many.</li>
+        <li>Built early instincts in communication, narrative framing, and audience engagement.</li>
       </ul>
     </div>
   </div>
@@ -901,115 +978,135 @@ footer {
 
 <!-- SKILLS -->
 <section id="skills">
-  <p class="section-label">Toolkit</p>
-  <h2 class="section-title">Skills &amp; Tools</h2>
-  <div class="divider"></div>
-  <div class="skills-grid">
-    <!-- Expertise -->
-    <div class="skill-item reveal"><span class="skill-icon">🧭</span><span class="skill-name">Social Media Strategy</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">✍️</span><span class="skill-name">Content Strategy</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">💡</span><span class="skill-name">Creative Strategy</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🏷️</span><span class="skill-name">Branding</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🔍</span><span class="skill-name">SEO Writing</span></div>
-    <!-- Tools -->
-    <div class="skill-item reveal"><span class="skill-icon">📊</span><span class="skill-name">Meta Business Suite</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">📈</span><span class="skill-name">Google Analytics</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">⚡</span><span class="skill-name">Power BI</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🎨</span><span class="skill-name">Canva</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🖊️</span><span class="skill-name">Inkscape</span></div>
-    <!-- Research -->
-    <div class="skill-item reveal"><span class="skill-icon">🔬</span><span class="skill-name">Performance Analysis</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🗺️</span><span class="skill-name">Campaign Planning</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">📰</span><span class="skill-name">Media Research</span></div>
-    <!-- Languages -->
-    <div class="skill-item reveal"><span class="skill-icon">🇬🇧</span><span class="skill-name">English</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🇮🇳</span><span class="skill-name">Marathi</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🇮🇳</span><span class="skill-name">Hindi</span></div>
-    <!-- Bonus -->
-    <div class="skill-item reveal"><span class="skill-icon">🎬</span><span class="skill-name">Art &amp; Costume Direction</span></div>
-    <div class="skill-item reveal"><span class="skill-icon">🧵</span><span class="skill-name">Visual Storytelling</span></div>
+  <div class="section-eyebrow">The Toolkit</div>
+  <h2 class="section-heading">What I Bring<br>to the Table.</h2>
+  <p class="section-sub">More than a list of buzzwords — these are things I actually do, and do well.</p>
+  <div class="skills-categories reveal">
+    <div>
+      <div class="skill-cat-label">Strategy &amp; Creative</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🧭</span> Social Media Strategy</div>
+        <div class="skill-pill"><span class="si">✍️</span> Content Strategy</div>
+        <div class="skill-pill"><span class="si">💡</span> Creative Strategy</div>
+        <div class="skill-pill"><span class="si">🏷️</span> Branding</div>
+        <div class="skill-pill"><span class="si">🔍</span> SEO Writing</div>
+        <div class="skill-pill"><span class="si">📅</span> Campaign Planning</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Tools &amp; Platforms</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">📊</span> Meta Business Suite</div>
+        <div class="skill-pill"><span class="si">📈</span> Google Analytics</div>
+        <div class="skill-pill"><span class="si">⚡</span> Power BI</div>
+        <div class="skill-pill"><span class="si">🎨</span> Canva</div>
+        <div class="skill-pill"><span class="si">🖊️</span> Inkscape</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Research &amp; Analysis</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🔬</span> Performance Analysis</div>
+        <div class="skill-pill"><span class="si">📰</span> Media Research</div>
+        <div class="skill-pill"><span class="si">🗂️</span> Semiotic Analysis</div>
+        <div class="skill-pill"><span class="si">📋</span> Content Analysis</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Film &amp; Visual Direction</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🎬</span> Art Direction</div>
+        <div class="skill-pill"><span class="si">👗</span> Costume Design</div>
+        <div class="skill-pill"><span class="si">🎭</span> Visual Storytelling</div>
+        <div class="skill-pill"><span class="si">🖼️</span> Script-to-Aesthetic Translation</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Languages</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🇬🇧</span> English</div>
+        <div class="skill-pill"><span class="si">🇮🇳</span> Marathi</div>
+        <div class="skill-pill"><span class="si">🇮🇳</span> Hindi</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- RESEARCH -->
+<!-- MEDIA RESEARCH -->
 <section id="research">
-  <p class="section-label">Academic Work</p>
-  <h2 class="section-title">Research Projects</h2>
-  <div class="divider"></div>
+  <div class="section-eyebrow">Academic Work</div>
+  <h2 class="section-heading">Media Research<br>Projects.</h2>
+  <p class="section-sub">Three papers. Three angles. One consistent question: <em>who does media serve, and how?</em></p>
   <div class="research-grid">
     <div class="research-card reveal">
       <div class="research-num">01</div>
       <div class="research-title">Branding 'Wellness' in India: A Multimodal Examination of Instagram Trends</div>
-      <div class="research-desc">Studied Indian wellness and beauty brands to explore evolving marketing patterns on social media. Conducted semiotic analysis to examine trends in brand marketing strategies.</div>
+      <div class="research-desc">Studied Indian wellness and beauty brands to map evolving marketing patterns on social media. Conducted semiotic analysis to examine the visual and verbal language of wellness branding.</div>
     </div>
     <div class="research-card reveal">
       <div class="research-num">02</div>
       <div class="research-title">All the Single Ladies: Portrayal of Single Women in Bollywood (2014–2024)</div>
-      <div class="research-desc">Analysed 8 films using feminist theory. Applied mixed-methods content analysis including screen time, symbolism, and narrative roles. Co-authored report on evolving gender norms and feminist shifts in Indian cinema.</div>
+      <div class="research-desc">Analysed 8 films through a feminist lens using mixed-methods content analysis — screen time, symbolism, and narrative roles. Co-authored a report on evolving gender norms in Indian cinema.</div>
     </div>
     <div class="research-card reveal">
       <div class="research-num">03</div>
-      <div class="research-title">Tit for Tat Diplomacy: A Framing Analysis of The TOI and The Wire</div>
-      <div class="research-desc">Researched India–Canada standoff coverage using Entman's framing model. Compared media framing with government stance to uncover ideological differences in journalism.</div>
+      <div class="research-title">Tit for Tat Diplomacy: Framing Analysis of The TOI and The Wire</div>
+      <div class="research-desc">Examined India–Canada standoff coverage using Entman's framing model. Compared editorial stances with official government positions to surface ideological divergence in press coverage.</div>
     </div>
+  </div>
+</section>
+
+<!-- MEDIA PRODUCTION -->
+<section id="production">
+  <div class="section-eyebrow">On-Set Work</div>
+  <h2 class="section-heading">Media Production<br>Projects.</h2>
+  <p class="section-sub">From script to screen — the visual side of the story.</p>
+  <div class="production-placeholder reveal">
+    <div class="ph-icon">🎞️</div>
+    <h3>Coming Soon</h3>
+    <p>Production credits and project details are on their way. This space is reserved for film projects, festival showcases, and behind-the-scenes work. Watch this space — good things take a little time to develop, just like great film.</p>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-label">Let's Connect</p>
-  <h2 class="section-title">Say Hello</h2>
-  <div class="divider"></div>
-  <p class="contact-subtitle">Open to creative collaborations, strategy roles, and conversations about media, storytelling, and everything in between.</p>
+  <div class="section-eyebrow">Let's Connect</div>
+  <h2 class="section-heading">Open to Great<br>Conversations.</h2>
+  <p class="section-sub">Whether it's a role, a collab, or just good creative banter — my inbox is a safe space.</p>
+  <p class="contact-spice">"Good strategy is just empathy at scale." — slide into my inbox, let's make something worth talking about.</p>
   <div class="contact-links">
-    <a href="mailto:mrunkul1601@gmail.com" class="contact-link">
-      <span>📧</span> mrunkul1601@gmail.com
-    </a>
-    <a href="tel:9405463706" class="contact-link">
-      <span>📱</span> +91 94054 63706
-    </a>
-    <a href="https://linkedin.com/in/mrunmai-kulkarni" target="_blank" class="contact-link">
-      <span>🔗</span> LinkedIn
-    </a>
+    <a href="mailto:mrunkul1601@gmail.com" class="contact-link"><span>📧</span> mrunkul1601@gmail.com</a>
+    <a href="tel:+919405463706" class="contact-link"><span>📱</span> +91 94054 63706</a>
+    <a href="https://linkedin.com/in/mrunmai-kulkarni" target="_blank" rel="noopener" class="contact-link"><span>🔗</span> LinkedIn</a>
+    <a href="#" class="contact-link"><span>📍</span> Pune, India</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 Mrunmai Kulkarni</span>
-  <span>Creative Strategist · Pune, India</span>
+  <span>© 2025 Mrunmai Kulkarni — Creative Strategist</span>
+  <span>Built with intention. Punk in a blazer energy. 🌿</span>
 </footer>
 
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal, .timeline-item').forEach(el => observer.observe(el));
-
-// Stagger timeline items
-document.querySelectorAll('.timeline-item').forEach((item, i) => {
-  item.style.transitionDelay = `${i * 0.08}s`;
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
 });
 
-// Stagger reveal items
-document.querySelectorAll('.reveal').forEach((el, i) => {
-  el.style.transitionDelay = `${(i % 6) * 0.08}s`;
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal, .tl-item').forEach((el, i) => {
+  el.style.transitionDelay = `${(i % 5) * 0.07}s`;
+  io.observe(el);
 });
 
-// Nav shrink on scroll
 window.addEventListener('scroll', () => {
-  const nav = document.querySelector('nav');
-  if (window.scrollY > 80) {
-    nav.style.padding = '1rem 4rem';
-  } else {
-    nav.style.padding = '1.4rem 4rem';
-  }
+  document.getElementById('mainNav').style.padding = window.scrollY > 60 ? '0.7rem 5vw' : '1.1rem 5vw';
 });
 </script>
 </body>
