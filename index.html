@@ -755,10 +755,10 @@ section { padding: 6rem 5vw; position: relative; }
 
 .film-img {
   flex-shrink: 0;
-  width: 260px;
-  height: 100%;
-  min-height: 280px;
-  object-fit: cover;
+  height: 280px;         /* Fix the height */
+  width: auto;           /* Let the width expand to stay horizontal */
+  max-width: 100%;       /* Prevents overflow on mobile */
+  object-fit: contain;   /* Ensures the whole image is visible without cropping */
   object-position: center;
   transition: transform 0.4s ease, filter 0.4s ease;
   filter: brightness(0.88) saturate(0.9);
