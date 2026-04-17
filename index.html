@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mrunmai Kulkarni, Creative Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --teal:    #004643;
+  --teal-l:  #00635e;
+  --teal-xl: #e0efee;
+  --gold:    #edd75a;
+  --gold-d:  #c9b43a;
+  --sienna:  #5d2b09;
+  --sienna-l:#8a4618;
+  --cream:   #fdf8ed;
+  --offwhite:#f5f0e4;
+  --ink:     #1c1008;
+  --muted:   #5a4e3a;
+  --line:    #e0d8c8;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 5vw;
+  background: rgba(253,248,237,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 2.5px solid var(--gold);
+  transition: padding 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--teal);
+  text-decoration: none;
+}
+.nav-logo .dot { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.25s;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover::after { width: 100%; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+  background: none;
+  border: none;
+}
+.hamburger span { width: 22px; height: 2px; background: var(--teal); border-radius: 2px; display: block; transition: 0.3s; }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  background: var(--teal);
+  display: flex;
+  align-items: center;
+  padding: 8rem 5vw 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-circles { position: absolute; inset: 0; pointer-events: none; }
+.hc {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(237,215,90,0.18);
+}
+.hc1 { width: 520px; height: 520px; right: -120px; top: -120px; }
+.hc2 { width: 300px; height: 300px; right: 80px; bottom: -60px; }
+.hc3 { width: 180px; height: 180px; left: 8vw; bottom: 60px; border-color: rgba(237,215,90,0.09); }
+
+.hero-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--teal);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s ease forwards;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.38s ease forwards;
+}
+.hero-name em { font-style: italic; font-weight: 400; color: var(--gold); }
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(253,248,237,0.55);
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.52s ease forwards;
+}
+
+.hero-bio {
+  font-size: 0.98rem;
+  color: rgba(253,248,237,0.7);
+  line-height: 1.85;
+  max-width: 520px;
+  margin-bottom: 2.4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.66s ease forwards;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s ease forwards;
+}
+
+.btn-gold {
+  padding: 0.85rem 2.2rem;
+  background: var(--gold);
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.3s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 20px rgba(237,215,90,0.22);
+}
+.btn-gold:hover { background: #f5e478; transform: translateY(-3px); box-shadow: 0 8px 28px rgba(237,215,90,0.38); }
+
+.btn-outline {
+  padding: 0.85rem 2.2rem;
+  border: 2px solid rgba(253,248,237,0.38);
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 5vw;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(253,248,237,0.38);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: pulse 2.5s infinite;
+}
+.hero-scroll-hint .hline { width: 36px; height: 1px; background: rgba(237,215,90,0.45); }
+
+/* SECTION BASE */
+section { padding: 6rem 5vw; position: relative; }
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sienna);
+  margin-bottom: 0.7rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 22px; height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+
+.section-sub {
+  font-size: 0.92rem;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+
+/* ABOUT */
+#about { background: var(--offwhite); }
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.92;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+}
+.about-text p strong { color: var(--teal); font-weight: 700; }
+.about-text p em { color: var(--sienna); font-style: italic; }
+
+.about-right { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.stat-card {
+  background: var(--teal);
+  padding: 1.5rem 1.8rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  cursor: default;
+}
+.stat-card:hover { transform: translateX(7px); box-shadow: -5px 0 0 var(--gold); }
+
+.stat-icon { font-size: 1.7rem; flex-shrink: 0; }
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-desc {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(253,248,237,0.6);
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* EXPERIENCE */
+#experience { background: var(--cream); }
+
+.timeline { position: relative; max-width: 860px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal) 0%, var(--gold) 50%, rgba(93,43,9,0.3) 100%);
+  border-radius: 2px;
+}
+
+.tl-item {
+  padding-left: 3.8rem;
+  margin-bottom: 2.8rem;
+  position: relative;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.js-loaded .tl-item {
+  opacity: 0;
+  transform: translateX(-18px);
+}
+.tl-item.visible { opacity: 1; transform: translateX(0); }
+
+.tl-dot {
+  position: absolute;
+  left: 5px; top: 18px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 3px solid var(--teal);
+  transition: background 0.3s, border-color 0.3s;
+  z-index: 1;
+}
+.tl-item:hover .tl-dot { background: var(--gold); border-color: var(--gold); }
+.tl-item.current .tl-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(237,215,90,0.25);
+}
+
+.tl-card {
+  background: white;
+  border: 1.5px solid var(--line);
+  border-radius: 7px;
+  padding: 1.8rem 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.tl-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 3px;
+  background: linear-gradient(to right, var(--teal), var(--gold));
+  transition: width 0.4s ease;
+}
+.tl-item:hover .tl-card { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,70,67,0.1); }
+.tl-item:hover .tl-card::before { width: 100%; }
+
+.tl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tl-date {
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sienna);
+}
+
+.tl-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.8rem;
+  border-radius: 20px;
+}
+.badge-current  { background: var(--gold); color: var(--teal); }
+.badge-intern   { background: var(--teal-xl); color: var(--teal); }
+.badge-freelance { background: #f0e8df; color: var(--sienna); }
+
+.tl-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.tl-company {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 0.95rem;
+}
+
+.tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.tl-bullets li {
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.65;
+  padding-left: 1.1rem;
+  position: relative;
+}
+.tl-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--gold-d);
+  font-size: 0.65rem;
+  top: 4px;
+}
+
+/* EDUCATION */
+#education { background: var(--teal); }
+#education .section-eyebrow { color: var(--gold); }
+#education .section-eyebrow::before { background: var(--gold); }
+#education .section-heading { color: var(--cream); }
+#education .section-sub { color: rgba(253,248,237,0.58); }
+
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+}
+
+.edu-card {
+  background: rgba(253,248,237,0.05);
+  border: 1.5px solid rgba(237,215,90,0.25);
+  border-radius: 8px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s, background 0.35s;
+  cursor: default;
+}
+.edu-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle at center, rgba(237,215,90,0.12), transparent 70%);
+  transition: width 0.4s, height 0.4s;
+}
+.edu-card:hover { transform: translateY(-6px); background: rgba(253,248,237,0.08); box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+.edu-card:hover::after { width: 180px; height: 180px; }
+
+.edu-gpa {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.edu-gpa span { font-size: 1rem; font-weight: 400; opacity: 0.55; }
+
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.edu-school { font-size: 0.76rem; color: rgba(253,248,237,0.52); font-weight: 600; margin-bottom: 0.25rem; }
+.edu-year {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.edu-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.edu-list li {
+  font-size: 0.82rem;
+  color: rgba(253,248,237,0.58);
+  line-height: 1.55;
+  padding-left: 1.1rem;
+  position: relative;
+}
+.edu-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  font-size: 0.36rem;
+  top: 5px;
+  color: var(--gold);
+}
+
+/* SKILLS */
+#skills { background: var(--sienna); }
+#skills .section-eyebrow { color: var(--gold); }
+#skills .section-eyebrow::before { background: var(--gold); }
+#skills .section-heading { color: var(--cream); }
+#skills .section-sub { color: rgba(253,248,237,0.52); }
+
+.skills-categories { display: flex; flex-direction: column; gap: 2.5rem; }
+
+.skill-cat-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(237,215,90,0.2);
+}
+
+.skills-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.skill-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.58rem 1.2rem;
+  background: rgba(253,248,237,0.07);
+  border: 1.5px solid rgba(253,248,237,0.14);
+  border-radius: 40px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(253,248,237,0.8);
+  transition: all 0.25s ease;
+  cursor: default;
+}
+.skill-pill:hover {
+  background: var(--gold);
+  color: var(--sienna);
+  border-color: var(--gold);
+  transform: translateY(-3px) scale(1.04);
+}
+.skill-pill .si { font-size: 1rem; }
+
+/* RESEARCH */
+#research { background: var(--offwhite); }
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.research-card {
+  background: white;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s;
+  cursor: default;
+}
+.research-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  background: linear-gradient(135deg, var(--teal-xl), rgba(237,215,90,0.09));
+  transition: height 0.4s ease;
+  z-index: 0;
+}
+.research-card > * { position: relative; z-index: 1; }
+.research-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(0,70,67,0.1); }
+.research-card:hover::before { height: 100%; }
+
+.research-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--line);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+.research-card:hover .research-num { color: var(--teal); }
+
+.research-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+  color: var(--ink);
+}
+.research-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+
+/* MEDIA PRODUCTION */
+#production { background: var(--ink); }
+#production .section-eyebrow { color: var(--gold); }
+#production .section-eyebrow::before { background: var(--gold); }
+#production .section-heading { color: var(--cream); }
+#production .section-sub { color: rgba(253,248,237,0.52); }
+
+.film-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Each film block */
+.film-block {
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(237,215,90,0.14);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+}
+.film-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--sienna-l));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+.film-block:hover { border-color: rgba(237,215,90,0.38); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.film-block:hover::before { transform: scaleX(1); }
+
+/* Film header row: title + role badge */
+.film-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 1.5rem 2rem 1.2rem;
+  border-bottom: 1px solid rgba(237,215,90,0.1);
+}
+
+.film-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+  font-weight: 900;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.film-title span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.film-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(237,215,90,0.12);
+  border: 1px solid rgba(237,215,90,0.3);
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.38rem 1rem;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+.film-role-badge::before { content: '🎬'; font-size: 0.75rem; }
+
+/* The 35/65 split body */
+.film-body {
+  display: flex;
+  min-height: 280px;
+}
+
+/* 35% – description card */
+.film-desc-panel {
+  flex: 0 0 35%;
+  width: 35%;
+  padding: 1.8rem 2rem;
+  background: rgba(0,70,67,0.25);
+  border-right: 1px solid rgba(237,215,90,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.film-synopsis-label,
+.film-work-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.film-synopsis-label::before { content: ''; width: 14px; height: 1.5px; background: var(--gold); border-radius: 2px; display: inline-block; }
+.film-work-label::before { content: ''; width: 14px; height: 1.5px; background: var(--sienna-l); border-radius: 2px; display: inline-block; }
+.film-work-label { color: var(--sienna-l); }
+
+.film-synopsis-text {
+  font-size: 0.84rem;
+  color: rgba(253,248,237,0.68);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+.film-work-text {
+  font-size: 0.82rem;
+  color: rgba(253,248,237,0.58);
+  line-height: 1.7;
+}
+
+/* 65% – image gallery */
+.film-gallery-panel {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  align-items: stretch;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) rgba(255,255,255,0.06);
+  position: relative;
+}
+.film-gallery-panel::-webkit-scrollbar { height: 5px; }
+.film-gallery-panel::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); }
+.film-gallery-panel::-webkit-scrollbar-thumb { background: var(--gold-d); border-radius: 4px; }
+
+.film-gallery-inner {
+  display: flex;
+  gap: 0;
+  height: 100%;
+  min-height: 280px;
+}
+
+.film-img {
+  flex-shrink: 0;
+  height: 280px;         /* Fix the height */
+  width: auto;           /* Let the width expand to stay horizontal */
+  max-width: 100%;       /* Prevents overflow on mobile */
+  object-fit: contain;   /* Ensures the whole image is visible without cropping */
+  object-position: center;
+  margin: 5px;             /* Creates 5px space on all sides of each image */
+  border-radius: 12px;     /* Makes the corners curved (adjust px for more/less curve) */
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: brightness(0.88) saturate(0.9);
+  cursor: zoom-in;
+}
+.film-img:hover { transform: scale(1.04); filter: brightness(1) saturate(1.08); z-index: 2; position: relative; }
+
+@keyframes bounceRight {
+  0%, 100% { transform: translateY(-50%) translateX(0); opacity: 0.9; }
+  50%       { transform: translateY(-50%) translateX(5px); opacity: 1; }
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,5,0,0.92);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+  animation: fadeUp 0.3s ease;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-size: 2rem;
+  color: var(--gold);
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+.lightbox-close:hover { opacity: 0.6; }
+
+/* film block entrance animation */
+@keyframes filmSlideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.film-block.reveal.visible {
+  animation: filmSlideUp 0.65s ease both;
+}
+
+/* RESPONSIVE: stacks on mobile */
+@media (max-width: 900px) {
+  .film-body { flex-direction: column; }
+  .film-desc-panel {
+    flex: none;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(237,215,90,0.1);
+  }
+  .film-gallery-inner { min-height: 220px; }
+  .film-img { width: 200px; min-height: 220px; }
+}
+@media (max-width: 480px) {
+  .film-header { padding: 1.2rem 1.2rem 1rem; }
+  .film-desc-panel { padding: 1.2rem; }
+  .film-img { width: 160px; }
+}
+
+/* CONTACT */
+#contact {
+  background: var(--teal);
+  text-align: center;
+  padding: 7rem 5vw;
+}
+#contact .section-eyebrow { color: var(--gold); justify-content: center; }
+#contact .section-eyebrow::before { background: var(--gold); }
+#contact .section-heading { color: var(--cream); }
+#contact .section-sub { color: rgba(253,248,237,0.58); margin: 0 auto 1rem; text-align: center; }
+
+.contact-spice {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--gold);
+  margin-bottom: 3rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border: 2px solid rgba(237,215,90,0.38);
+  border-radius: 4px;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.contact-link:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--teal);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(237,215,90,0.28);
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  padding: 1.4rem 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(253,248,237,0.28);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.38; }
+  50%       { opacity: 0.85; }
+}
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.js-loaded .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.js-loaded .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .edu-grid    { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  nav { padding: 1rem 5vw; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: rgba(253,248,237,0.97);
+    backdrop-filter: blur(14px);
+    border-bottom: 2.5px solid var(--gold);
+    flex-direction: column;
+    gap: 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { border-bottom: 1px solid var(--line); }
+  .nav-links a {
+    display: block;
+    padding: 1rem 5vw;
+    font-size: 0.88rem;
+  }
+  .hamburger { display: flex; }
+
+  #hero { padding: 7rem 5vw 4rem; }
+  .hero-name { font-size: clamp(2.6rem, 11vw, 3.8rem); }
+  .hero-scroll-hint { display: none; }
+
+  section { padding: 4.5rem 5vw; }
+
+  .timeline::before { left: 10px; }
+  .tl-item { padding-left: 2.8rem; }
+  .tl-dot  { left: 1px; }
+
+  .research-grid { grid-template-columns: 1fr; }
+  footer { justify-content: center; text-align: center; }
+}
+
+@media (max-width: 400px) {
+  .btn-gold, .btn-outline { padding: 0.75rem 1.4rem; font-size: 0.73rem; }
+  .hero-cta { flex-direction: column; }
+  .contact-links { flex-direction: column; align-items: center; }
+}
+
+/* PHOTO */
+.about-photo-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.about-photo {
+  width: 300px;
+  height: 380px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 4px;
+  display: block;
+  box-shadow: 12px 12px 0px var(--gold);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.about-photo:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 16px 16px 0px var(--gold);
+}
+.about-photo-caption {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(253,248,237,0.45);
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+/* Modal styles removed — case studies open as separate pages */
+
+/* Case study button */
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  padding: 0.55rem 1.2rem;
+  background: var(--teal);
+  color: var(--cream);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  font-family: 'Nunito', sans-serif;
+}
+.cs-btn:hover { background: var(--teal-l); transform: translateY(-2px); }
+.cs-btn svg { width: 13px; height: 13px; }
+
+@media (max-width: 680px) {
+  .about-photo { width: 220px; height: 280px; }
+  .cs-modal { height: 90vh; }
+}
+@media (max-width: 480px) {
+  .about-photo { width: 100%; height: 260px; }
+  .cs-modal-overlay { padding: 0; }
+  .cs-modal { border-radius: 0; height: 100vh; }
+}
+
+
+/* Prevent browser visited-link colour change on case study buttons */
+.cs-btn,
+.cs-btn:visited,
+.cs-btn:visited svg {
+  color: var(--cream) !important;
+  background: var(--teal) !important;
+}
+.cs-btn:hover,
+.cs-btn:focus {
+  background: var(--teal-l) !important;
+  color: var(--cream) !important;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo" aria-label="Home">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Body -->
+      <ellipse cx="19" cy="24" rx="9" ry="10" fill="#E8671A"/>
+      <!-- Head -->
+      <circle cx="19" cy="13" r="7.5" fill="#E8671A"/>
+      <!-- Left ear -->
+      <polygon points="11,8 13.5,2 16,8" fill="#E8671A"/>
+      <polygon points="12,7.5 13.5,4 15,7.5" fill="#f5a06a"/>
+      <!-- Right ear -->
+      <polygon points="22,8 24.5,2 27,8" fill="#E8671A"/>
+      <polygon points="23,7.5 24.5,4 26,7.5" fill="#f5a06a"/>
+      <!-- Face -->
+      <!-- Eyes (behind specs) -->
+      <ellipse cx="16" cy="13" rx="1.2" ry="1.4" fill="#1c1008"/>
+      <ellipse cx="22" cy="13" rx="1.2" ry="1.4" fill="#1c1008"/>
+      <!-- Specs frames -->
+      <rect x="13" y="11" width="5.5" height="4" rx="1.5" fill="none" stroke="#5d2b09" stroke-width="1.1"/>
+      <rect x="19.5" y="11" width="5.5" height="4" rx="1.5" fill="none" stroke="#5d2b09" stroke-width="1.1"/>
+      <!-- Specs bridge -->
+      <line x1="18.5" y1="13" x2="19.5" y2="13" stroke="#5d2b09" stroke-width="1.1"/>
+      <!-- Nose -->
+      <ellipse cx="19" cy="16" rx="1" ry="0.6" fill="#c0541a"/>
+      <!-- Mouth -->
+      <path d="M17.5 17.5 Q19 18.5 20.5 17.5" stroke="#c0541a" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <!-- Whiskers left -->
+      <line x1="11" y1="15.5" x2="15.5" y2="16" stroke="#c0541a" stroke-width="0.6" opacity="0.7"/>
+      <line x1="11" y1="17" x2="15.5" y2="17" stroke="#c0541a" stroke-width="0.6" opacity="0.7"/>
+      <!-- Whiskers right -->
+      <line x1="27" y1="15.5" x2="22.5" y2="16" stroke="#c0541a" stroke-width="0.6" opacity="0.7"/>
+      <line x1="27" y1="17" x2="22.5" y2="17" stroke="#c0541a" stroke-width="0.6" opacity="0.7"/>
+      <!-- Paws -->
+      <ellipse cx="13" cy="33.5" rx="3.5" ry="2.2" fill="#d45e10"/>
+      <ellipse cx="25" cy="33.5" rx="3.5" ry="2.2" fill="#d45e10"/>
+      <!-- Tail -->
+      <path d="M28 28 Q35 22 32 17" stroke="#E8671A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Journey</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#production">Production</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-circles">
+    <div class="hc hc1"></div>
+    <div class="hc hc2"></div>
+    <div class="hc hc3"></div>
+  </div>
+  <div style="position:relative;z-index:1;max-width:680px;">
+    <div class="hero-tag">✦ Creative Strategist &amp; Media Communicator</div>
+    <h1 class="hero-name">Mrunmai<br>Kulkarni</h1>
+    <p class="hero-subtitle">I make audiences stop, scroll, and stay.</p>
+    <p class="hero-bio">Storyteller by instinct, strategist by craft. I build audience-driven narratives that actually convert across social media, film, and everything in between.</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-gold">See My Journey</a>
+      <a href="#contact" class="btn-outline">Let's Talk</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="hline"></div>
+  </div>
+</section>
+
+<!-- ABOUT PART 1 -->
+<section id="about" style="background: var(--teal); padding-top: 3rem; padding-bottom: 4rem;">
+  <div class="section-eyebrow" style="color: var(--gold);">Who I Am</div>
+  <h2 class="section-heading" style="color: var(--cream);">I Didn't Start With<br>Social Media.</h2>
+  <div style="display:flex; align-items:flex-start; gap:3.5rem; margin-top:1rem; flex-wrap:wrap;">
+    <div class="about-origin reveal" style="flex:1; min-width:260px;">
+      <p style="font-size: 1.08rem; line-height: 2; color: rgba(253,248,237,0.82); margin-bottom: 1.2rem;">I started with content. ✨ Books ✨ The kind that make you pause. Re-read a line. Come back to a page. That's where I first noticed patterns: what makes you stop, what makes you stay.</p>
+      <p style="font-size: 1.08rem; line-height: 2; color: rgba(253,248,237,0.82);">Somewhere between curiosity and overthinking, I realized that content isn't random. <em style="color: var(--gold); font-style: italic;">It's designed.</em></p>
+    </div>
+    <div class="about-photo-wrap reveal" style="flex-shrink:0;">
+      <img src="/Images/Portfolio%20Profile%20Pic.JPG" alt="Mrunmai Kulkarni" class="about-photo"/>
+      <p class="about-photo-caption">Mrunmai Kulkarni</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT PART 2 -->
+<section id="about2" style="background: var(--offwhite);">
+  <div class="section-eyebrow">Who I Am</div>
+  <h2 class="section-heading">Warm. Curious.<br>Dangerously Strategic.</h2>
+  <p class="section-sub">Media isn't just my degree. It's how I understand the world.</p>
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <p>I'm a creative strategist living at the intersection of <strong>data and storytelling</strong>. I use analytics to sharpen narratives and stories to move numbers because <em>great content shouldn't have to choose between being felt and being measured.</em></p>
+      <p>With a background spanning social media marketing, media research, and visual direction for film, I bring a rare blend of <strong>right-brain creativity and left-brain accountability</strong> to every project I touch.</p>
+      <p>When I'm not crafting campaigns or calendars, you'll find me obsessing over the production design of a film, playing with cats while constantly observing and decoding patterns across social media behaviour, people, and global markets. But secretly, I'm also rehearsing my own scene somewhere in between.</p>
+    </div>
+    <div class="about-right reveal">
+      <div class="stat-card">
+        <span class="stat-icon">📈</span>
+        <div>
+          <div class="stat-num">636%</div>
+          <div class="stat-desc">Follower surge · iFilms</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">🔥</span>
+        <div>
+          <div class="stat-num">165%</div>
+          <div class="stat-desc">Engagement boost · iFilms</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">🚀</span>
+        <div>
+          <div class="stat-num">~75%</div>
+          <div class="stat-desc">Overall performance growth · iFilms</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">Career Journey</div>
+  <h2 class="section-heading">The Glow-Up,<br>Documented.</h2>
+  <p class="section-sub">From intern-with-big-ideas to strategist-with-proven-results. Here's the journey in full.</p>
+
+  <div class="timeline">
+
+    <!-- Current: Creative Strategist -->
+    <div class="tl-item current">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Dec 2025 – Present</span>
+          <span class="tl-badge badge-current">✦ Current Role</span>
+        </div>
+        <div class="tl-role">Creative Strategist</div>
+        <div class="tl-company">iFilms Media Productions Pvt. Ltd. · Pune</div>
+        <ul class="tl-bullets">
+          <li>Strategised and scaled social media content and campaigns, driving <strong>~75% growth</strong> in overall performance metrics.</li>
+          <li>Led end-to-end content planning, managing monthly calendars across platforms to ensure brand consistency and alignment.</li>
+          <li>Coordinated cross-functional teams (design, content, production) to execute campaigns efficiently and on-brand.</li>
+          <li>Wrote scripts for election campaigns and podcasts, blending persuasive storytelling with strategic messaging.</li>
+          <li>Analysed performance data to optimise content strategy and continuously improve engagement outcomes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- iFilms Intern -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Oct 2025 – Dec 2025</span>
+          <span class="tl-badge badge-intern">Internship</span>
+        </div>
+        <div class="tl-role">Social Media &amp; Marketing Intern</div>
+        <div class="tl-company">iFilms Media Productions Pvt. Ltd. · Pune</div>
+        <ul class="tl-bullets">
+          <li>Developed and executed content strategy that increased views by <strong>115%</strong> and content interactions by <strong>165%</strong>.</li>
+          <li>Drove audience growth, contributing to a <strong>636% increase in followers</strong> within the campaign period.</li>
+          <li>Managed content calendars and posting workflows across brand and client accounts.</li>
+          <li>Supported paid promotions and campaign execution, improving reach and overall visibility.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sakal -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">May 2025 – Jul 2025</span>
+          <span class="tl-badge badge-intern">Internship</span>
+        </div>
+        <div class="tl-role">Social Media Intern</div>
+        <div class="tl-company">Sakal Media Group · Pune</div>
+        <ul class="tl-bullets">
+          <li>Managed daily social media publishing for a news platform, ensuring timely and trend-responsive content delivery.</li>
+          <li>Improved audience retention and engagement consistency through SEO-driven captions and news-led content strategy.</li>
+          <li>Maintained consistent weekly performance, stabilising content output at <strong>~800–900 views</strong> and <strong>300–380 reach per week</strong> after initial peak cycles.</li>
+          <li>Tracked and analysed performance metrics using Meta Business Suite to refine posting strategy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Media Exhibitors -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Dec 2023 – Jan 2024</span>
+          <span class="tl-badge badge-intern">Internship</span>
+        </div>
+        <div class="tl-role">Social Media Marketing Intern</div>
+        <div class="tl-company">Media Exhibitors Pvt. Ltd.</div>
+        <ul class="tl-bullets">
+          <li>Executed social media campaigns for clients across real estate, F&amp;B, and sports industries.</li>
+          <li>Researched audience insights and trends to inform targeted content strategies.</li>
+          <li>Managed content and ad execution using Meta Business Suite.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Art Direction -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-top">
+          <span class="tl-date">Aug 2023 – Present</span>
+          <span class="tl-badge badge-freelance">Freelance</span>
+        </div>
+        <div class="tl-role">Art &amp; Costume Director</div>
+        <div class="tl-company">Independent Film Projects</div>
+        <ul class="tl-bullets">
+          <li>Led visual storytelling and costume design for film projects showcased at regional festivals.</li>
+          <li>Collaborated with creative teams to translate scripts into visual aesthetics and character design.</li>
+          <li>Because telling great stories on-screen is just social media with better lighting. 🎥</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-eyebrow">Academic Roots</div>
+  <h2 class="section-heading">Where It All<br>Began.</h2>
+  <p class="section-sub">Two degrees, one consistent trait: always near the top of the class.</p>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-gpa">8.5 <span>/ 10</span></div>
+      <div class="edu-degree">M.Sc. Media &amp; Communication</div>
+      <div class="edu-school">DMCS, Savitribai Phule Pune University</div>
+      <div class="edu-year">2023 – 2025</div>
+      <ul class="edu-list">
+        <li>Specialised in media research with analytical and theoretical frameworks.</li>
+        <li>Planned simulated advertising and CSR campaigns for real brand challenges.</li>
+        <li>Developed brand marketing strategies for diverse target audiences.</li>
+        <li>Contributed as Art &amp; Costume Director in short film projects.</li>
+      </ul>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-gpa">9.08 <span>/ 10</span></div>
+      <div class="edu-degree">BA Political Science</div>
+      <div class="edu-school">H.P.T. Arts &amp; R.Y.K. Science College, Nashik</div>
+      <div class="edu-year">2020 – 2023</div>
+      <ul class="edu-list">
+        <li>Strong foundation in critical thinking, persuasion, and public discourse.</li>
+        <li>Co-wrote and co-directed a skit that won the 'Best Skit' prize. First W of many.</li>
+        <li>Built early instincts in communication, narrative framing, and audience engagement.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">The Toolkit</div>
+  <h2 class="section-heading">What I Bring<br>to the Table.</h2>
+  <p class="section-sub">More than a list of buzzwords. These are things I actually do, and do well.</p>
+  <div class="skills-categories reveal">
+    <div>
+      <div class="skill-cat-label">Strategy &amp; Creative</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🧭</span> Social Media Strategy</div>
+        <div class="skill-pill"><span class="si">✍️</span> Content Strategy</div>
+        <div class="skill-pill"><span class="si">💡</span> Creative Strategy</div>
+        <div class="skill-pill"><span class="si">🏷️</span> Branding</div>
+        <div class="skill-pill"><span class="si">🔍</span> SEO Writing</div>
+        <div class="skill-pill"><span class="si">📅</span> Campaign Planning</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Tools &amp; Platforms</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">📊</span> Meta Business Suite</div>
+        <div class="skill-pill"><span class="si">📈</span> Google Analytics</div>
+        <div class="skill-pill"><span class="si">⚡</span> Power BI</div>
+        <div class="skill-pill"><span class="si">🎨</span> Canva</div>
+        <div class="skill-pill"><span class="si">🖊️</span> Inkscape</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Research &amp; Analysis</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🔬</span> Performance Analysis</div>
+        <div class="skill-pill"><span class="si">📰</span> Media Research</div>
+        <div class="skill-pill"><span class="si">🗂️</span> Semiotic Analysis</div>
+        <div class="skill-pill"><span class="si">📋</span> Content Analysis</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Film &amp; Visual Direction</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🎬</span> Art Direction</div>
+        <div class="skill-pill"><span class="si">👗</span> Costume Design</div>
+        <div class="skill-pill"><span class="si">🎭</span> Visual Storytelling</div>
+        <div class="skill-pill"><span class="si">🖼️</span> Script-to-Aesthetic Translation</div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-label">Languages</div>
+      <div class="skills-row">
+        <div class="skill-pill"><span class="si">🇬🇧</span> English</div>
+        <div class="skill-pill"><span class="si">🇮🇳</span> Marathi</div>
+        <div class="skill-pill"><span class="si">🇮🇳</span> Hindi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA RESEARCH -->
+<section id="research">
+  <div class="section-eyebrow">Academic Work</div>
+  <h2 class="section-heading">Media Research<br>Projects.</h2>
+  <p class="section-sub">Three papers. Three angles. One consistent question: <em>who does media serve, and how?</em></p>
+  <div class="research-grid">
+    <div class="research-card reveal">
+      <div class="research-num">01</div>
+      <div class="research-title">Branding 'Wellness' in India: A Multimodal Examination of Instagram Trends</div>
+      <div class="research-desc">Studied Indian wellness and beauty brands to map evolving marketing patterns on social media. Conducted semiotic analysis to examine the visual and verbal language of wellness branding.</div>
+      <a href="Case_1.html" target="_blank" class="cs-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Case Study
+      </a>
+    </div>
+    <div class="research-card reveal">
+      <div class="research-num">02</div>
+      <div class="research-title">All the Single Ladies: Portrayal of Single Women in Bollywood (2014–2024)</div>
+      <div class="research-desc">Analysed 8 films through a feminist lens using mixed-methods content analysis: screen time, symbolism, and narrative roles. Co-authored a report on evolving gender norms in Indian cinema.</div>
+      <a href="Case_2.html" target="_blank" class="cs-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Case Study
+      </a>
+    </div>
+    <div class="research-card reveal">
+      <div class="research-num">03</div>
+      <div class="research-title">Tit for Tat Diplomacy: Framing Analysis of The TOI and The Wire</div>
+      <div class="research-desc">Examined India–Canada standoff coverage using Entman's framing model. Compared editorial stances with official government positions to surface ideological divergence in press coverage.</div>
+      <a href="Case_3.html" target="_blank" class="cs-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Case Study
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA PRODUCTION -->
+<section id="production">
+  <div class="section-eyebrow">On-Set Work</div>
+  <h2 class="section-heading">Media Production<br>Projects.</h2>
+  <p class="section-sub">From script to screen. The visual side of the story.</p>
+
+  <div class="film-cards-list">
+
+    <!-- CASSATA -->
+    <div class="film-block reveal">
+      <div class="film-header">
+        <div class="film-title"><span>Cassata</span></div>
+        <div class="film-role-badge">Art &amp; Costume Director</div>
+      </div>
+      <div class="film-body">
+        <div class="film-desc-panel">
+          <div>
+            <div class="film-synopsis-label">Synopsis</div>
+            <p class="film-synopsis-text">A tender, late-life coming-of-age story that follows two elderly friends as they navigate their identities as gay men and the quiet, complex process of familial acceptance.</p>
+          </div>
+          <div>
+            <div class="film-work-label">My Work</div>
+            <p class="film-work-text">Led both art and costume direction independently, shaping a visual language that balanced intimacy, nostalgia, and emotional vulnerability.</p>
+          </div>
+        </div>
+        <div class="film-gallery-panel" id="gallery-cassata">
+          <div class="film-gallery-inner">
+            <img class="film-img" src="/Images/Cassata%201.png" alt="Cassata - Still 1" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%202.png" alt="Cassata - Still 2" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%203.png" alt="Cassata - Still 3" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%204.png" alt="Cassata - Still 4" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%205.png" alt="Cassata - Still 5" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%206.png" alt="Cassata - Still 6" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%207.png" alt="Cassata - Still 7" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%208.png" alt="Cassata - Still 8" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%209.png" alt="Cassata - Still 9" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2010.png" alt="Cassata - Still 10" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2011.png" alt="Cassata - Still 11" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2012.png" alt="Cassata - Still 12" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2013.png" alt="Cassata - Still 13" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2014.png" alt="Cassata - Still 14" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2015.png" alt="Cassata - Still 15" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2016.png" alt="Cassata - Still 16" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2017.png" alt="Cassata - Still 17" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2018.png" alt="Cassata - Still 18" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2019.png" alt="Cassata - Still 19" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Cassata%2020.png" alt="Cassata - Still 20" loading="lazy" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GHENARYANE GHET JAAVE -->
+    <div class="film-block reveal">
+      <div class="film-header">
+        <div class="film-title"><span>Ghenaryane Ghet Jaave</span></div>
+        <div class="film-role-badge">Co-Production &amp; Costume Director</div>
+      </div>
+      <div class="film-body">
+        <div class="film-desc-panel">
+          <div>
+            <div class="film-synopsis-label">Synopsis</div>
+            <p class="film-synopsis-text">A situational comedy that unfolds around a misplaced ₹2000 note, capturing the chaotic and humorous scramble between a customer, a bank employee, and a peon.</p>
+          </div>
+          <div>
+            <div class="film-work-label">My Work</div>
+            <p class="film-work-text">Co-developed production design and independently handled costume direction to enhance character contrast and comedic timing through visual cues.</p>
+          </div>
+        </div>
+        <div class="film-gallery-panel" id="gallery-ggj">
+          <div class="film-gallery-inner">
+          <img class="film-img" src="/Images/GGJ%201.png" alt="GGJ - Still 1" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%202.png" alt="GGJ - Still 2" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%203.png" alt="GGJ - Still 3" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%204.png" alt="GGJ - Still 4" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%205.png" alt="GGJ - Still 5" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%206.png" alt="GGJ - Still 6" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%207.png" alt="GGJ - Still 7" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%208.png" alt="GGJ - Still 8" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%209.png" alt="GGJ - Still 9" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%2010.png" alt="GGJ - Still 10" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%2011.png" alt="GGJ - Still 11" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%2012.png" alt="GGJ - Still 12" loading="lazy" onerror="this.style.display='none'">
+          <img class="film-img" src="/Images/GGJ%2013.png" alt="GGJ - Still 13" loading="lazy" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBLIVION -->
+    <div class="film-block reveal">
+      <div class="film-header">
+        <div class="film-title"><span>Oblivion</span></div>
+        <div class="film-role-badge">Art Assistant &amp; Costume Director</div>
+      </div>
+      <div class="film-body">
+        <div class="film-desc-panel">
+          <div>
+            <div class="film-synopsis-label">Synopsis</div>
+            <p class="film-synopsis-text">A psychological narrative that blurs the line between memory and reality, following a man trapped in a looping moment tied to love, loss, and unresolved closure.</p>
+          </div>
+          <div>
+            <div class="film-work-label">My Work</div>
+            <p class="film-work-text">Worked as art assistant and costume director, contributing to a surreal yet grounded visual tone reflecting fragmented consciousness.</p>
+          </div>
+        </div>
+        <div class="film-gallery-panel" id="gallery-oblivion">
+          <div class="film-gallery-inner">
+            <img class="film-img" src="/Images/Oblivion%201.png" alt="Oblivion - Still 1" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%202.png" alt="Oblivion - Still 2" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%203.png" alt="Oblivion - Still 3" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%204.png" alt="Oblivion - Still 4" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%205.png" alt="Oblivion - Still 5" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%206.png" alt="Oblivion - Still 6" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%207.png" alt="Oblivion - Still 7" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%208.png" alt="Oblivion - Still 8" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%209.png" alt="Oblivion - Still 9" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%2010.png" alt="Oblivion - Still 10" loading="lazy" onerror="this.style.display='none'">
+            <img class="film-img" src="/Images/Oblivion%2011.png" alt="Oblivion - Still 11" loading="lazy" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE NO. 5510 -->
+    <div class="film-block reveal">
+      <div class="film-header">
+        <div class="film-title"><span>Case No. 5510</span></div>
+        <div class="film-role-badge">Costume Director</div>
+      </div>
+      <div class="film-body">
+        <div class="film-desc-panel">
+          <div>
+            <div class="film-synopsis-label">Synopsis</div>
+            <p class="film-synopsis-text">A psychological exploration of perception and delusion, where a man unknowingly inhabits a stranger's home, constructing an imagined life that slowly unravels.</p>
+          </div>
+          <div>
+            <div class="film-work-label">My Work</div>
+            <p class="film-work-text">Designed costumes to subtly reflect the protagonist's shifting mental state and detachment from reality.</p>
+          </div>
+        </div>
+        <div class="film-gallery-panel" id="gallery-cn5510">
+          <div class="film-gallery-inner">
+                <img class="film-img" src="/Images/CN%205510%201.png" alt="CN 5510 - Still 1" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%202.png" alt="CN 5510 - Still 2" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%203.png" alt="CN 5510 - Still 3" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%204.png" alt="CN 5510 - Still 4" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%205.png" alt="CN 5510 - Still 5" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%206.png" alt="CN 5510 - Still 6" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%207.png" alt="CN 5510 - Still 7" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%208.png" alt="CN 5510 - Still 8" loading="lazy" onerror="this.style.display='none'">
+                <img class="film-img" src="/Images/CN%205510%209.png" alt="CN 5510 - Still 9" loading="lazy" onerror="this.style.display='none'">      
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATHLETES ARE MAD -->
+    <div class="film-block reveal">
+      <div class="film-header">
+        <div class="film-title"><span>Athletes Are Mad</span></div>
+        <div class="film-role-badge">Freelance Costume Director</div>
+      </div>
+      <div class="film-body">
+        <div class="film-desc-panel">
+          <div>
+            <div class="film-synopsis-label">Synopsis</div>
+            <p class="film-synopsis-text">A documentary capturing the journeys of five emerging athletes, highlighting discipline, obsession, and the emotional intensity behind competitive sport.</p>
+          </div>
+          <div>
+            <div class="film-work-label">My Work</div>
+            <p class="film-work-text">Worked as a freelance costume director, styling real athletes while maintaining authenticity and individuality in a non-fiction setting.</p>
+          </div>
+        </div>
+        <div class="film-gallery-panel" id="gallery-aam">
+          <div class="film-gallery-inner">
+            <img class="film-img" src="Images/AAM%201.png" alt="Athletes Are Mad - Still 1" loading="lazy" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.film-cards-list -->
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Let's Connect</div>
+  <h2 class="section-heading">Open to Great<br>Conversations.</h2>
+  <p class="section-sub">Whether it's a role, a collab, or just good creative banter, my inbox is a safe space.</p>
+  <p class="contact-spice">"Good strategy is just empathy at scale." Slide into my inbox, let's make something worth talking about.</p>
+  <div class="contact-links">
+    <a href="/cdn-cgi/l/email-protection#39544b4c57524c55080f0908795e54585055175a5654" class="contact-link"><span>📧</span> <span class="__cf_email__" data-cfemail="d2bfa0a7bcb9a7bee3e4e2e392b5bfb3bbbefcb1bdbf">[email&#160;protected]</span></a>
+    <a href="tel:+919405463706" class="contact-link"><span>📱</span> +91 94054 63706</a>
+    <a href="https://www.linkedin.com/in/mrunmai-k-abc016" target="_blank" rel="noopener" class="contact-link"><span>🔗</span> LinkedIn</a>
+    <a href="#" class="contact-link"><span>📍</span> Pune, India</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Mrunmai Kulkarni, Creative Strategist</span>
+  <span>Built with intention. Punk in a blazer energy. 🌿</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+// Add js-loaded so CSS can safely hide elements for animation
+document.body.classList.add('js-loaded');
+
+function revealAll() {
+  document.querySelectorAll('.reveal, .tl-item').forEach(el => {
+    el.style.transitionDelay = '0s';
+    el.classList.add('visible');
+  });
+}
+
+// If user is returning (bfcache restore or back button), show everything instantly
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) { revealAll(); return; }
+});
+
+// If navigated back via history, reveal everything
+if (window.performance && window.performance.navigation.type === 2) {
+  revealAll();
+} else {
+  // Normal page load: use IntersectionObserver for scroll animations
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .tl-item').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 5) * 0.07}s`;
+    io.observe(el);
+  });
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.padding = window.scrollY > 60 ? '0.7rem 5vw' : '1.1rem 5vw';
+});
+
+// Lightbox for film images
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.film-img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+  lightboxImg.src = '';
+}
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Keyboard accessibility for carousels / lightbox
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>
